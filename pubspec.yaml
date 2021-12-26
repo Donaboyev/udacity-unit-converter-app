@@ -17,6 +17,12 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^1.0.0
+  flutter_launcher_icons: ^0.9.1
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: 'assets/icons/app_logo.png'
 
 flutter:
   uses-material-design: true
@@ -30,6 +36,7 @@ flutter:
     - assets/icons/power.png
     - assets/icons/time.png
     - assets/icons/volume.png
+    - assets/icons/app_logo.png
   fonts:
     - family: Raleway
       fonts:
