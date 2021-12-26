@@ -1,0 +1,36 @@
+name: unit_converter_app
+description: Building Interactive Apps with Flutter (Udactiy course)
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.15.1 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^1.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/data/regular_units.json
+    - assets/icons/area.png
+    - assets/icons/currency.png
+    - assets/icons/digital_storage.png
+    - assets/icons/length.png
+    - assets/icons/mass.png
+    - assets/icons/power.png
+    - assets/icons/time.png
+    - assets/icons/volume.png
+  fonts:
+    - family: Raleway
+      fonts:
+        - asset: third_party/Raleway-Regular.ttf
