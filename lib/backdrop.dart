@@ -7,6 +7,12 @@ import 'category.dart';
 const double _kFlingVelocity = 2.0;
 
 class _BackdropPanel extends StatelessWidget {
+  final VoidCallback? onTap;
+  final GestureDragUpdateCallback? onVerticalDragUpdate;
+  final GestureDragEndCallback? onVerticalDragEnd;
+  final Widget? title;
+  final Widget? child;
+
   const _BackdropPanel({
     Key? key,
     this.onTap,
@@ -15,12 +21,6 @@ class _BackdropPanel extends StatelessWidget {
     this.title,
     this.child,
   }) : super(key: key);
-
-  final VoidCallback? onTap;
-  final GestureDragUpdateCallback? onVerticalDragUpdate;
-  final GestureDragEndCallback? onVerticalDragEnd;
-  final Widget? title;
-  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -43,17 +43,13 @@ class _BackdropPanel extends StatelessWidget {
               padding: const EdgeInsetsDirectional.only(start: 16.0),
               alignment: AlignmentDirectional.centerStart,
               child: DefaultTextStyle(
-                style: Theme.of(context).textTheme.subtitle1!,
+                style: Theme.of(context).textTheme.titleMedium!,
                 child: title!,
               ),
             ),
           ),
-          const Divider(
-            height: 1.0,
-          ),
-          Expanded(
-            child: child!,
-          ),
+          const Divider(height: 1.0),
+          Expanded(child: child!),
         ],
       ),
     );
@@ -75,7 +71,7 @@ class _BackdropTitle extends AnimatedWidget {
   Widget build(BuildContext context) {
     final Animation<double> animation = listenable as Animation<double>;
     return DefaultTextStyle(
-      style: Theme.of(context).primaryTextTheme.headline6!,
+      style: Theme.of(context).primaryTextTheme.titleLarge!,
       softWrap: false,
       overflow: TextOverflow.ellipsis,
       child: Stack(
@@ -254,9 +250,7 @@ class _BackdropState extends State<Backdrop>
           backTitle: widget.backTitle,
         ),
       ),
-      body: LayoutBuilder(
-        builder: _buildStack,
-      ),
+      body: LayoutBuilder(builder: _buildStack),
     );
   }
 }

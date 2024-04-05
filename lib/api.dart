@@ -1,11 +1,9 @@
 import 'dart:async';
 import 'dart:convert' show json, utf8;
 import 'dart:io';
+import 'package:flutter/material.dart';
 
-const apiCategory = {
-  'name': 'Currency',
-  'route': 'currency',
-};
+const apiCategory = {'name': 'Currency', 'route': 'currency'};
 
 class Api {
   final HttpClient _httpClient = HttpClient();
@@ -15,22 +13,29 @@ class Api {
     final uri = Uri.https(_url, '/$category');
     final jsonResponse = await _getJson(uri);
     if (jsonResponse == null || jsonResponse['units'] == null) {
-      print('Error retrieving units.');
+      debugPrint('Error retrieving units.');
       return null;
     }
     return jsonResponse['units'];
   }
 
   Future<double?> convert(
-      String? category, String amount, String? fromUnit, String? toUnit) async {
-    final uri = Uri.https(_url, '/$category/convert',
-        {'amount': amount, 'from': fromUnit, 'to': toUnit});
+    String? category,
+    String amount,
+    String? fromUnit,
+    String? toUnit,
+  ) async {
+    final uri = Uri.https(
+      _url,
+      '/$category/convert',
+      {'amount': amount, 'from': fromUnit, 'to': toUnit},
+    );
     final jsonResponse = await _getJson(uri);
     if (jsonResponse == null || jsonResponse['status'] == null) {
-      print('Error retrieving conversion.');
+      debugPrint('Error retrieving conversion.');
       return null;
     } else if (jsonResponse['status'] == 'error') {
-      print(jsonResponse['message']);
+      debugPrint(jsonResponse['message']);
       return null;
     }
     return jsonResponse['conversion'].toDouble();
@@ -46,7 +51,7 @@ class Api {
       final responseBody = await httpResponse.transform(utf8.decoder).join();
       return json.decode(responseBody);
     } on Exception catch (e) {
-      print('$e');
+      debugPrint('$e');
       return null;
     }
   }

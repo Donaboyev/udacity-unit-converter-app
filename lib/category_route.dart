@@ -18,9 +18,10 @@ class CategoryRoute extends StatefulWidget {
 }
 
 class _CategoryRouteState extends State<CategoryRoute> {
+  final _categories = <Category>[];
   Category? _defaultCategory;
   Category? _currentCategory;
-  final _categories = <Category>[];
+
   static const _baseColors = <ColorSwatch>[
     ColorSwatch(
       0xFF6AB7A8,

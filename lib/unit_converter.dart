@@ -50,13 +50,12 @@ class _UnitConverterState extends State<UnitConverter> {
   void _createDropdownMenuItems() {
     var newItems = <DropdownMenuItem>[];
     for (var unit in widget.category.units) {
-      newItems.add(DropdownMenuItem(
-        value: unit.name,
-        child: Text(
-          unit.name!,
-          softWrap: true,
+      newItems.add(
+        DropdownMenuItem(
+          value: unit.name,
+          child: Text(unit.name!, softWrap: true),
         ),
-      ));
+      );
     }
     setState(() {
       _unitMenuItems = newItems;
@@ -127,7 +126,7 @@ class _UnitConverterState extends State<UnitConverter> {
           _inputValue = inputDouble;
           _updateConversion();
         } on Exception catch (e) {
-          print('Error: $e');
+          debugPrint('Error: $e');
           _showValidationError = true;
         }
       }
@@ -185,7 +184,7 @@ class _UnitConverterState extends State<UnitConverter> {
               value: currentValue,
               items: _unitMenuItems,
               onChanged: onChanged,
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
           ),
         ),
@@ -216,7 +215,7 @@ class _UnitConverterState extends State<UnitConverter> {
               Text(
                 "Oh no! We can't connect right now!",
                 textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.headline5!.copyWith(
+                style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                       color: Colors.white,
                     ),
               ),
@@ -233,9 +232,9 @@ class _UnitConverterState extends State<UnitConverter> {
         children: [
           TextField(
             key: _inputKey,
-            style: Theme.of(context).textTheme.headline4,
+            style: Theme.of(context).textTheme.headlineMedium,
             decoration: InputDecoration(
-              labelStyle: Theme.of(context).textTheme.headline4,
+              labelStyle: Theme.of(context).textTheme.headlineMedium,
               errorText: _showValidationError ? 'Invalid number entered' : null,
               labelText: 'Input',
               border: OutlineInputBorder(
@@ -252,10 +251,7 @@ class _UnitConverterState extends State<UnitConverter> {
 
     const arrows = RotatedBox(
       quarterTurns: 1,
-      child: Icon(
-        Icons.compare_arrows,
-        size: 40.0,
-      ),
+      child: Icon(Icons.compare_arrows, size: 40.0),
     );
 
     final output = Padding(
@@ -266,11 +262,11 @@ class _UnitConverterState extends State<UnitConverter> {
           InputDecorator(
             child: Text(
               _convertedValue,
-              style: Theme.of(context).textTheme.headline4,
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
             decoration: InputDecoration(
               labelText: 'Output',
-              labelStyle: Theme.of(context).textTheme.headline4,
+              labelStyle: Theme.of(context).textTheme.headlineMedium,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(0.0),
               ),
@@ -297,10 +293,7 @@ class _UnitConverterState extends State<UnitConverter> {
             return converter;
           } else {
             return Center(
-              child: SizedBox(
-                width: 450.0,
-                child: converter,
-              ),
+              child: SizedBox(width: 450.0, child: converter),
             );
           }
         },
